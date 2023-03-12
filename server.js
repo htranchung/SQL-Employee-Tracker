@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const db = require('./db/schema.sql');
 
 
 function prompts() {
@@ -56,4 +57,29 @@ function prompts() {
                     }
                 ]
             }
-        ]).then
+        ]).then((answers) => {
+            if (answers.prompt === 'View All Employees') {
+                db.query(`SELECT * FROM employee`), (err, results) => {
+                    if (err) throw err;
+                    console.log("Viewing All Employees: ");
+                    console.table(result);
+                    prompts();
+                }
+            } else if (answers.prompt === 'View All Roles') {
+                db.query(`SELECT * FROM employee`), (err, results) => {
+                    if (err) throw err;
+                    console.log("Viewing All Employees: ");
+                    console.table(result);
+                    prompts();
+                }
+            } else if (answers.prompt === 'View All Departments') {
+                db.query(`SELECT * FROM department`), (err, results) => {
+                    if (err) throw err;
+                    console.log("Viewing All department: ");
+                    console.table(result);
+                    prompts();
+                }
+            }
+        });
+
+}
